@@ -1,0 +1,14 @@
+{
+  "tests": [
+    {
+      "name": "Oppgave-3 test",
+      "setup": "npm install",
+      "run": "npm test",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 10
+    }
+  ]
+}
