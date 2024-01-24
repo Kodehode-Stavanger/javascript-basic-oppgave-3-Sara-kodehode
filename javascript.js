@@ -40,60 +40,90 @@ skip Otto!
 const cities = ["New York", "London", "Paris", "Berlin", "Copenhagen", "Rome"];
 
 const people = [
-	{
-		name: "Thomas",
-		male: true,
-		age: 23,
-		hobbies: ["cycling", "football", "pool"]
-	},
-	{
-		name: "Susan",
-		male: false,
-		age: 26,
-		hobbies: ["jogging", "travelling", "dancing"]
-	},
-	{
-		name: "Monica",
-		male: false,
-		age: 21,
-		hobbies: ["skateboarding", "guitar", "concerts"]
-	},
-	{
-		name: "Avery",
-		male: true,
-		age: 28,
-		hobbies: ["writing", "games", "memes"]
-	},
-	{
-		name: "Phillip",
-		male: true,
-		age: 24,
-		hobbies: ["boxing", "wrestling", "mma"]
-	},
-	{
-		name: "Otto",
-		male: true,
-		age: 36,
-		hobbies: ["movies", "cinema", "music"]
-	},
-	{
-		name: "Annabelle",
-		male: false,
-		age: 30,
-		hobbies: ["makeup", "fashion", "shopping"]
-	},
-	{
-		name: "Cathy",
-		male: false,
-		age: 18,
-		hobbies: ["design", "drawing", "css"]
-	}
+  {
+    name: "Thomas",
+    male: true,
+    age: 23,
+    hobbies: ["cycling", "football", "pool"],
+  },
+  {
+    name: "Susan",
+    male: false,
+    age: 26,
+    hobbies: ["jogging", "travelling", "dancing"],
+  },
+  {
+    name: "Monica",
+    male: false,
+    age: 21,
+    hobbies: ["skateboarding", "guitar", "concerts"],
+  },
+  {
+    name: "Avery",
+    male: true,
+    age: 28,
+    hobbies: ["writing", "games", "memes"],
+  },
+  {
+    name: "Phillip",
+    male: true,
+    age: 24,
+    hobbies: ["boxing", "wrestling", "mma"],
+  },
+  {
+    name: "Otto",
+    male: true,
+    age: 36,
+    hobbies: ["movies", "cinema", "music"],
+  },
+  {
+    name: "Annabelle",
+    male: false,
+    age: 30,
+    hobbies: ["makeup", "fashion", "shopping"],
+  },
+  {
+    name: "Cathy",
+    male: false,
+    age: 18,
+    hobbies: ["design", "drawing", "css"],
+  },
 ];
 let combinedAge = 0;
+let loopCounter = 0;
 
 //your code here
+// for loop to check all the objects values
+for (let i = 0; i < people.length; i++) {
+  //condition to not make any changes if name value = Otto
+  if (people[i].name === "Otto") {
+    continue;
+  } else {
+    // declar a newkey city to add for index in people object
+    // add random values to city value
+    people[i].city = cities[Math.floor(Math.random() * cities.length)];
+
+    // add newkey value title for every index in people object
+    // use condition to check if its male or female
+    if (people[i].male === true) {
+      people[i].title = "Mr.";
+    } else {
+      people[i].title = "Ms.";
+    }
+  }
+  // increment the age by 2
+  people[i].age += 2;
+  // addinf coding in the begining of hobbies array to all indexes
+  people[i].hobbies.unshift("coding");
+  //console.log(people[i]);
+  // calculating the combined age for all indexes
+  combinedAge += people[i].age;
+  //loop counter know the number of people to calculate teh average age
+  loopCounter++;
+}
 
 let averageAge = 0;
+averageAge = combinedAge / loopCounter;
 
 /******************************************************************************
 2.
@@ -117,8 +147,16 @@ should have.
 diceRoller(5, 20) should return an array of 5 random numbers ranging from 1-20 
 ******************************************************************************/
 
-function diceRoller() {
-	//your code here
+function diceRoller(arrLength, maxNum) {
+  //your code here
+  // declaring an array to push the randoms numbers in
+  let newArr = [];
+  // for loop runs "arrlength" times
+  for (let i = 0; i < arrLength; i++) {
+    // take the ceil number from math.random because the average between 1 and maxNum (0 is not included)
+    newArr.push(Math.ceil(Math.random() * maxNum));
+  }
+  return newArr;
 }
 
 /******************************************************************************
@@ -145,8 +183,18 @@ should return:
 "this text needs to be cleaned up"
 ******************************************************************************/
 
-function wordCleaner() {
-	//your code here
+function wordCleaner(stringsArr) {
+  //your code here
+  // declare array to push in clean strings
+  let cleanStrings = [];
+  // use for of lop to check the given array
+  for (let str of stringsArr) {
+    //.trim() removes the space before and after the string .toLowercase()
+    cleanStrings.push(str.trim().toLowerCase());
+  }
+  // join all the clean srings in one string
+  let cleanString = cleanStrings.join(" ");
+  return cleanString;
 }
 
 /******************************************************************************
@@ -180,10 +228,46 @@ should be detected.
 
 I have provided some string variables to test your function with.
 ******************************************************************************/
+const greetingsInLanguages = [
+  { greeting: "hello", language: "english" },
+  { greeting: "ciao", language: "italian" },
+  { greeting: "salut", language: "french" },
+  { greeting: "hallo", language: "german" },
+  { greeting: "hola", language: "spanish" },
+  { greeting: "czesc", language: "polish" },
+];
 
 const helloChecker = (str) => {
-	//your code here
+  //your code here
+  let wordsArray = str.toLowerCase().split(" ");
+  for (let i = 0; i < greetingsInLanguages.length; i++) {
+    for (let j = 0; j < wordsArray.length; j++) {
+      {
+        if (wordsArray[j] === greetingsInLanguages[i].greeting) {
+          return `HELLO detected in ${greetingsInLanguages[i].language}.`;
+        }
+      }
+    }
+  }
+  return "No HELLO detected.";
 };
+console.log(helloChecker("Ciao signore!"));
+
+// const helloChecker = (str) => {
+//   const wordsArray = str.toLowerCase();
+
+//   for (let i = 0; i < greetingsInLanguages.length; i++) {
+//     if (wordsArray.includes(greetingsInLanguages[i].greeting)) {
+//       // for (let j = 0; j < greetingsInLanguages.length; j++) {
+//       //   if (wordsArray[i] === greetingsInLanguages[j].greeting) {
+//       return `HELLO detected in ${greetingsInLanguages[i].language}.`;
+//       //   }
+//       // }
+//     }
+//   }
+//   return "No HELLO detected.";
+// };
+// console.log(helloChecker("Ciao signore!"));
 
 /******************************************************************************
 5.
@@ -215,20 +299,34 @@ should return "whao is ohe ptino tf ohis?"
 ******************************************************************************/
 
 function doubleSwap(string, charA, charB) {
-	//your code here
+  // your code here
+  let newString = [];
+  const charArray = string.split("");
+  for (let i = 0; i < charArray.length; i++) {
+    if (charArray[i] === charA) {
+      newString.push(charB);
+    } else if (charArray[i] === charB) {
+      newString.push(charA);
+    } else {
+      newString.push(charArray[i]);
+    }
+    outputString = newString.join("");
+  }
+  return outputString;
 }
 
+console.log(doubleSwap("what is the point of this?", "o", "t"));
 /******************************************************************************
 ⬇️ FOR TESTING - DON'T TOUCH ⬇️
 ******************************************************************************/
 
 module.exports = {
-	cities,
-	people,
-	wordCleaner,
-	helloChecker,
-	doubleSwap,
-	diceRoller,
-	averageAge,
-	combinedAge
+  cities,
+  people,
+  wordCleaner,
+  helloChecker,
+  doubleSwap,
+  diceRoller,
+  averageAge,
+  combinedAge,
 };
