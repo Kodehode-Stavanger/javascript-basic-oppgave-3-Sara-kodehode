@@ -228,6 +228,7 @@ should be detected.
 
 I have provided some string variables to test your function with.
 ******************************************************************************/
+
 const greetingsInLanguages = [
   { greeting: "hello", language: "english" },
   { greeting: "ciao", language: "italian" },
@@ -236,39 +237,36 @@ const greetingsInLanguages = [
   { greeting: "hola", language: "spanish" },
   { greeting: "czesc", language: "polish" },
 ];
-
-const helloChecker = (str) => {
-  //your code here
-  let wordsArray = str.toLowerCase().split(" ");
-  for (let i = 0; i < greetingsInLanguages.length; i++) {
-    for (let j = 0; j < wordsArray.length; j++) {
-      {
-        if (wordsArray[j] === greetingsInLanguages[i].greeting) {
-          return `HELLO detected in ${greetingsInLanguages[i].language}.`;
-        }
-      }
-    }
-  }
-  return "No HELLO detected.";
-};
-console.log(helloChecker("Ciao signore!"));
-
+//your code here
+//I wrote 2 codes for this function
+//code 1
 // const helloChecker = (str) => {
-//   const wordsArray = str.toLowerCase();
-
+//   //declare array to split srting in lowercase words
+//   let wordsArray = str.toLowerCase().split(" ");
+//   //two for loops to compare the greetings in all languages with all words in the array
 //   for (let i = 0; i < greetingsInLanguages.length; i++) {
-//     if (wordsArray.includes(greetingsInLanguages[i].greeting)) {
-//       // for (let j = 0; j < greetingsInLanguages.length; j++) {
-//       //   if (wordsArray[i] === greetingsInLanguages[j].greeting) {
-//       return `HELLO detected in ${greetingsInLanguages[i].language}.`;
-//       //   }
-//       // }
+//     for (let j = 0; j < wordsArray.length; j++) {
+//       if (wordsArray[j] === greetingsInLanguages[i].greeting) {
+//         return `HELLO detected in ${greetingsInLanguages[i].language}.`;
+//       }
 //     }
 //   }
 //   return "No HELLO detected.";
 // };
 // console.log(helloChecker("Ciao signore!"));
 
+const helloChecker = (str) => {
+  // array to have all the words in lowercase
+  const wordsArray = str.toLowerCase();
+  // for loop to loop over all the indexes in greetingsinlangauge object
+  for (let i = 0; i < greetingsInLanguages.length; i++) {
+    // if the words array includes the greeting return the language with the same index
+    if (wordsArray.includes(greetingsInLanguages[i].greeting)) {
+      return `HELLO detected in ${greetingsInLanguages[i].language}.`;
+    }
+  }
+  return "No HELLO detected.";
+};
 /******************************************************************************
 5.
 
@@ -300,8 +298,11 @@ should return "whao is ohe ptino tf ohis?"
 
 function doubleSwap(string, charA, charB) {
   // your code here
+  // declare array to push the letters in
   let newString = [];
+  // spliting the given array into letters
   const charArray = string.split("");
+  // loop over the chararray to compare with the given two letters
   for (let i = 0; i < charArray.length; i++) {
     if (charArray[i] === charA) {
       newString.push(charB);
@@ -310,6 +311,7 @@ function doubleSwap(string, charA, charB) {
     } else {
       newString.push(charArray[i]);
     }
+    //join all the letters in one string
     outputString = newString.join("");
   }
   return outputString;
