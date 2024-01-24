@@ -255,6 +255,7 @@ const greetingsInLanguages = [
 // };
 // console.log(helloChecker("Ciao signore!"));
 
+//code 2
 const helloChecker = (str) => {
   // array to have all the words in lowercase
   const wordsArray = str.toLowerCase();
